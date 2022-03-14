@@ -28,7 +28,7 @@ ngx_crc32_short(u_char *p, size_t len)
     while (len--) {
         c = *p++;
         crc = ngx_crc32_table_short[(crc ^ (c & 0xf)) & 0xf] ^ (crc >> 4);
-        crc = ngx_crc32_table_short[(crc ^ (c >> 4)) & 0xf] ^ (crc >> 4);
+        crc = ngx_crc32_table_short[(crc ^ (u_char)(c >> 4)) & 0xf] ^ (crc >> 4);
     }
 
     return crc ^ 0xffffffff;
